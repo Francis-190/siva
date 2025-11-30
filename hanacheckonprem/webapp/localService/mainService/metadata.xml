@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="1.0" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx" xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns:sap="http://www.sap.com/Protocols/SAPData">
+    <edmx:DataServices m:DataServiceVersion="2.0">
+        <Schema Namespace="YODATA_DEALER_SRV" xml:lang="en" sap:schema-version="1" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+            <EntityType Name="Dealer" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Dealerid"/>
+                </Key>
+                <Property Name="Dealerid" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Character Field with Length 10" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Dealername" Type="Edm.String" Nullable="false" MaxLength="30" sap:unicode="false" sap:label="DEALERNAME" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="StockAvailability" Type="Edm.Int32" Nullable="false" sap:unicode="false" sap:label="Integer" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="LimitAvailable" Type="Edm.Int32" Nullable="false" sap:unicode="false" sap:label="Integer" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <NavigationProperty Name="Nav_dealer" Relationship="YODATA_DEALER_SRV.ASS_dealtobill" FromRole="FromRole_ASS_dealtobill" ToRole="ToRole_ASS_dealtobill"/>
+            </EntityType>
+            <EntityType Name="billings" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Modelcode"/>
+                </Key>
+                <Property Name="Modelcode" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Character Field with Length 10" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Dealer" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Character Field with Length 10" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="Modeldescription" Type="Edm.String" Nullable="false" MaxLength="30" sap:unicode="false" sap:label="MODELDESCRIPTION" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Stock" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="STOCK" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Availability" Type="Edm.String" Nullable="false" MaxLength="15" sap:unicode="false" sap:label="AVAILABILITY" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Totalquantity" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="TOTALQUANTITY" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Fundrequired" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="FUNDREQUIRED" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Totalallocation" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="TOTALALLOCATION" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Ordervalue" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="ORDERVALUE" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Vectorreq" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="VECTORREQ" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Fst" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="FST" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Black" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="BLACK" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Red" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="RED" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Yellow" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="YELLOW" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Green" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="GREEN" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Rational" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="RATIONAL" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Snopallocation" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="SNOPALLOCATION" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Svopallocation" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="SVOPALLOCATION" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <Association Name="ASS_dealtobill" sap:content-version="1">
+                <End Type="YODATA_DEALER_SRV.Dealer" Multiplicity="1" Role="FromRole_ASS_dealtobill"/>
+                <End Type="YODATA_DEALER_SRV.billings" Multiplicity="*" Role="ToRole_ASS_dealtobill"/>
+            </Association>
+            <EntityContainer Name="YODATA_DEALER_SRV_Entities" m:IsDefaultEntityContainer="true" sap:supported-formats="atom json xlsx">
+                <EntitySet Name="DealerSet" EntityType="YODATA_DEALER_SRV.Dealer" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="billingsSet" EntityType="YODATA_DEALER_SRV.billings" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <AssociationSet Name="ASS_dealtobill_AssocSet" Association="YODATA_DEALER_SRV.ASS_dealtobill" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="DealerSet" Role="FromRole_ASS_dealtobill"/>
+                    <End EntitySet="billingsSet" Role="ToRole_ASS_dealtobill"/>
+                </AssociationSet>
+            </EntityContainer>
+            <Annotation Term="Core.SchemaVersion" String="1.0.0" xmlns="http://docs.oasis-open.org/odata/ns/edm"/>
+            <atom:link rel="self" href="http://host:41/sap/opu/odata/sap/YODATA_DEALER_SRV/$metadata" xmlns:atom="http://www.w3.org/2005/Atom"/>
+            <atom:link rel="latest-version" href="http://host:41/sap/opu/odata/sap/YODATA_DEALER_SRV/$metadata" xmlns:atom="http://www.w3.org/2005/Atom"/>
+        </Schema>
+    </edmx:DataServices>
+</edmx:Edmx>

@@ -1,0 +1,99 @@
+_schema-version: 3.3.0
+ID: biiling_back
+description: A simple CAP project.
+version: 1.0.0
+modules:
+- name: biiling_back-srv
+  type: nodejs
+  path: gen/srv
+  requires:
+  - name: biiling_back-db
+  - name: biiling_back-auth
+  provides:
+  - name: srv-api
+    properties:
+      srv-url: ${default-url}
+  parameters:
+    buildpack: nodejs_buildpack
+    instances: 1
+  build-parameters:
+    builder: npm-ci
+- name: biiling_back-db-deployer
+  type: hdb
+  path: gen/db
+  requires:
+  - name: biiling_back-db
+  parameters:
+    buildpack: nodejs_buildpack
+- name: biiling_back-app-content
+  type: com.sap.application.content
+  path: .
+  requires:
+  - name: biiling_back-repo-host
+    parameters:
+      content-target: true
+  build-parameters:
+    build-result: resources
+    requires:
+    - artifacts:
+      - bpaui5.zip
+      name: bpaui5
+      target-path: resources/
+- name: bpaui5
+  type: html5
+  path: app/bpa_ui5
+  build-parameters:
+    build-result: dist
+    builder: custom
+    commands:
+    - npm install
+    - npm run build:cf
+    supported-platforms: []
+resources:
+- name: biiling_back-db
+  type: com.sap.xs.hdi-container
+  parameters:
+    service: hana
+    service-plan: hdi-shared
+- name: biiling_back-auth
+  type: org.cloudfoundry.managed-service
+  parameters:
+    config:
+      tenant-mode: dedicated
+      xsappname: biiling_back-${org}-${space}
+    path: ./xs-security.json
+    service: xsuaa
+    service-plan: application
+- name: biiling_back-repo-host
+  type: org.cloudfoundry.managed-service
+  parameters:
+    service: html5-apps-repo
+    service-name: biiling_back-html5-service
+    service-plan: app-host
+- name: biiling_back-destination-service
+  type: org.cloudfoundry.managed-service
+  parameters:
+    config:
+      HTML5Runtime_enabled: false
+      init_data:
+        instance:
+          destinations:
+          - Authentication: NoAuthentication
+            Name: ui5
+            ProxyType: Internet
+            Type: HTTP
+            URL: https://ui5.sap.com
+          existing_destinations_policy: update
+      version: 1.0.0
+    service: destination
+    service-name: biiling_back-destination-service
+    service-plan: lite
+parameters:
+  deploy_mode: html5-repo
+  enable-parallel-deployments: true
+build-parameters:
+  before-all:
+  - builder: custom
+    commands:
+    - npm ci
+    - npx cds build --production

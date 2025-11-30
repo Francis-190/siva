@@ -1,0 +1,31 @@
+<mvc:View
+    controllerName="hanacheckonprem.controller.View1"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:cards="sap.f.cards">
+
+    <Page id="page" title="{i18n>title}">
+
+        <HeaderContainer id="NewHeader">
+            <ObjectHeader id="Neobj" title="Hi Welcome" />
+        </HeaderContainer>
+
+        <content>
+            <HBox>
+                <VBox>
+                    <ComboBox
+                        id="idDealerCombo"
+                        width="300px"
+                        showClearIcon="true"
+                        placeholder="Enter or choose an ID..."
+                        items="{ path: '/DealerSet' }"
+                        class="comboBoxStyle">
+                        <core:Item key="{Dealerid}" text="{Dealerid}" />
+                    </ComboBox>
+                </VBox>
+            </HBox>
+        </content>
+
+    </Page>
+</mvc:View>

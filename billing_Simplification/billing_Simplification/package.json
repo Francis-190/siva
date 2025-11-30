@@ -1,0 +1,37 @@
+{
+  "name": "billing_Simplification",
+  "version": "1.0.0",
+  "description": "A simple CAP project.",
+  "repository": "<Add your repository here>",
+  "license": "UNLICENSED",
+  "private": true,
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "start": "cds-serve",
+    "watch": "cds watch"
+  },
+  "dependencies": {
+    "@sap/cds": "^9",
+    "@cap-js/hana": "^2",
+    "@cap-js/sqlite": "^2",
+    "@sap/xssec": "^4",
+    "express": "^4"
+  },
+  "devDependencies": {
+    "@sap/cds-dk": "^9.3.2",
+    "@cap-js/cds-types": "^0.13.0"
+  },
+  "cds": {
+    "requires": {
+      "[development]": {
+        "db": "sqlite"
+      },
+      "[production]": {
+        "db": "hana",
+        "auth": "xsuaa"
+      }
+    }
+  }
+}

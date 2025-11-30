@@ -1,0 +1,7 @@
+{
+  "xsappname": "billingv4front",
+  "tenant-mode": "dedicated",
+  "description": "Security profile of called application",
+  "scopes": [],
+  "role-templates": []
+}

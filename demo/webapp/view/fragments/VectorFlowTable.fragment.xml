@@ -1,0 +1,122 @@
+
+<core:FragmentDefinition
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:t="sap.ui.table">
+
+    <Dialog
+        id="vectorFlowDialog"
+        title="Vector Flow Details">
+
+        <content>
+            <VBox
+                width="100%"
+                justifyContent="Center"
+                alignItems="Center"
+                class="sapUiSmallMargin">
+
+                <t:Table
+                    id="vectorFlowTable"
+                    selectionMode="None"
+                    columnHeaderVisible="true"
+                    alternateRowColors="true"
+                    rows="{viewModel>/Billings}"
+                    width="98%" class="allocationTable">
+                    
+
+                    <!-- FST Column -->
+                    <t:Column hAlign="Center" headerSpan="6">
+                        <t:multiLabels>
+                            <Label text="Vector Flow" textAlign="Center"/>
+                            <Label text="FST" textAlign="Center" class="fstHeader"/>
+                        </t:multiLabels>
+                        <t:template>
+                            <Text text="{viewModel>fst}" />
+                        </t:template>
+                    </t:Column>
+
+                    <!-- BLACK Column -->
+                    <t:Column hAlign="Center">
+                        <t:multiLabels>
+                            <Label text="Vector Flow" textAlign="Center"/>
+                            <Label text="BLACK" textAlign="Center" class="blackHeader"/>
+                        </t:multiLabels>
+                        <t:template>
+                            <Text text="{viewModel>black}" />
+                        </t:template>
+                    </t:Column>
+
+                    <!-- RED Column -->
+                    <t:Column hAlign="Center">
+                        <t:multiLabels>
+                            <Label text="Vector Flow" textAlign="Center"/>
+                            <Label text="RED" textAlign="Center" class="redHeader"/>
+                        </t:multiLabels>
+                        <t:template>
+                            <Text text="{viewModel>red}" />
+                        </t:template>
+                    </t:Column>
+
+                    <!-- YELLOW Column -->
+                    <t:Column hAlign="Center">
+                        <t:multiLabels>
+                            <Label text="Vector Flow" textAlign="Center"/>
+                            <Label text="YELLOW" textAlign="Center" class="yellowHeader"/>
+                        </t:multiLabels>
+                        <t:template>
+                            <Text text="{viewModel>yellow}" />
+                        </t:template>
+                    </t:Column>
+
+                    <!-- GREEN Column -->
+                    <t:Column hAlign="Center">
+                        <t:multiLabels>
+                            <Label text="Vector Flow" textAlign="Center"/>
+                            <Label text="GREEN" textAlign="Center" class="greenHeader"/>
+                        </t:multiLabels>
+                        <t:template>
+                            <Text text="{viewModel>green}" />
+                        </t:template>
+                    </t:Column>
+
+                    <!-- ALLOCATION Column -->
+                    <t:Column hAlign="Center" width="120px">
+                        <t:multiLabels>
+                            <Label text="Vector Flow" textAlign="Center"/>
+                            <Label text="ALLOCATION" textAlign="Center" class="allocationHeader"/>
+                        </t:multiLabels>
+                        <t:template>
+                            <Text text="{viewModel>allocation}" />
+                        </t:template>
+                    </t:Column>
+
+                    <!-- SNOP ALLOCATION Column -->
+                    <t:Column hAlign="Center">
+                        <t:multiLabels>
+                            <Label text="SNOP Allocation" textAlign="Center"/>
+                        </t:multiLabels>
+                        <t:template>
+                            <Text text="{viewModel>snopAllocation}" textAlign="Center"/>
+                        </t:template>
+                    </t:Column>
+
+                    <!-- SVPO ALLOCATION Column -->
+                    <t:Column hAlign="Center">
+                        <t:multiLabels>
+                            <Label text="SVPO Allocation" textAlign="Center"/>
+                        </t:multiLabels>
+                        <t:template>
+                            <Text text="{viewModel>svopAllocation}" textAlign="Center"/>
+                        </t:template>
+                    </t:Column>
+
+                </t:Table>
+            </VBox>
+        </content>
+
+        <endButton>
+            <Button text="Close" press=".onCloseDialog" />
+        </endButton>
+
+    </Dialog>
+</core:FragmentDefinition>

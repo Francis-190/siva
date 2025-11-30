@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="1.0" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx" xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns:sap="http://www.sap.com/Protocols/SAPData">
+    <edmx:Reference Uri="https://sap.github.io/odata-vocabularies/vocabularies/Common.xml" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Alias="Common" Namespace="com.sap.vocabularies.Common.v1"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="https://oasis-tcs.github.io/odata-vocabularies/vocabularies/Org.OData.Core.V1.xml" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Alias="Core" Namespace="Org.OData.Core.V1"/>
+    </edmx:Reference>
+    <edmx:DataServices m:DataServiceVersion="2.0">
+        <Schema Namespace="MyService" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+            <Annotation Term="Core.Links" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Collection>
+                    <Record>
+                        <PropertyValue Property="rel" String="author"/>
+                        <PropertyValue Property="href" String="https://cap.cloud.sap"/>
+                    </Record>
+                </Collection>
+            </Annotation>
+            <EntityContainer Name="EntityContainer" m:IsDefaultEntityContainer="true">
+                <EntitySet Name="Billings" EntityType="MyService.Billings"/>
+                <EntitySet Name="Dealer" EntityType="MyService.Dealer"/>
+                <AssociationSet Name="Billings_dealer" Association="MyService.Billings_dealer">
+                    <End Role="Billings" EntitySet="Billings"/>
+                    <End Role="Dealer" EntitySet="Dealer"/>
+                </AssociationSet>
+            </EntityContainer>
+            <EntityType Name="Billings">
+                <Key>
+                    <PropertyRef Name="modelCode"/>
+                </Key>
+                <Property Name="modelCode" Type="Edm.String" Nullable="false"/>
+                <Property Name="modelDescription" Type="Edm.String"/>
+                <Property Name="stock" Type="Edm.String"/>
+                <Property Name="availability" Type="Edm.String"/>
+                <Property Name="totalQuantity" Type="Edm.String"/>
+                <Property Name="fundRequired" Type="Edm.String"/>
+                <Property Name="totalAllocation" Type="Edm.String"/>
+                <Property Name="OrderVAlue" Type="Edm.String"/>
+                <NavigationProperty Name="dealer" Relationship="MyService.Billings_dealer" FromRole="Billings" ToRole="Dealer"/>
+                <Property Name="dealer_dealerId" Type="Edm.String"/>
+                <Property Name="vectorReq" Type="Edm.String"/>
+                <Property Name="fst" Type="Edm.String"/>
+                <Property Name="black" Type="Edm.String"/>
+                <Property Name="red" Type="Edm.String"/>
+                <Property Name="yellow" Type="Edm.String"/>
+                <Property Name="green" Type="Edm.String"/>
+                <Property Name="rational" Type="Edm.String"/>
+                <Property Name="snopAllocation" Type="Edm.String"/>
+                <Property Name="svopAllocation" Type="Edm.String"/>
+            </EntityType>
+            <EntityType Name="Dealer">
+                <Key>
+                    <PropertyRef Name="dealerId"/>
+                </Key>
+                <Property Name="dealerId" Type="Edm.String" Nullable="false"/>
+                <NavigationProperty Name="billings" Relationship="MyService.Billings_dealer" FromRole="Dealer" ToRole="Billings"/>
+                <Property Name="DealerName" Type="Edm.String"/>
+                <Property Name="Stock_Availability" Type="Edm.Int32"/>
+                <Property Name="Limit_available" Type="Edm.Int32"/>
+            </EntityType>
+            <Association Name="Billings_dealer">
+                <End Role="Billings" Type="MyService.Billings" Multiplicity="*"/>
+                <End Role="Dealer" Type="MyService.Dealer" Multiplicity="0..1"/>
+                <ReferentialConstraint>
+                    <Principal Role="Dealer">
+                        <PropertyRef Name="dealerId"/>
+                    </Principal>
+                    <Dependent Role="Billings">
+                        <PropertyRef Name="dealer_dealerId"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+        </Schema>
+    </edmx:DataServices>
+</edmx:Edmx>
